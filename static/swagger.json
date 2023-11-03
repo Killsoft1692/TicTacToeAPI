@@ -1,0 +1,218 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "TicTacToe API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/game/board": {
+        "get": {
+          "description": "Returns game board",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/game/active_player": {
+        "get": {
+          "description": "Returns active player",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Player's name"
+            }
+          }
+        }
+      },
+      "/game/move": {
+        "post": {
+          "description": "Provide a next player's coordinates",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "move",
+              "in": "body",
+              "description": "JSON data for the api",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Move"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Move successful."
+            },
+            "400": {
+              "description": "Invalid request data"
+            }
+          }
+        }
+      },
+      "/game/statistics/{username}": {
+        "get": {
+          "description": "Retrieve game statistics for a specific user.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "path",
+              "description": "The username of the user for whom you want to retrieve statistics.",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/game/leaderboard": {
+        "get": {
+          "description": "Retrieve a game leaderboard.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/game/looserboard": {
+        "get": {
+          "description": "Retrieve a game looserboard.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/player": {
+        "post": {
+          "description": "Registers a new player",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "register",
+              "in": "body",
+              "description": "JSON data for the api",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Player added"
+            },
+            "400": {
+              "description": "Invalid request data"
+            }
+          }
+        }
+      },
+      "/players": {
+        "get": {
+          "description": "Retrieve list of registered players.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            }
+          }
+        }
+      },
+      "/player/{player_id}": {
+        "get": {
+          "description": "Retrieve a player's BIO.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "player_id",
+              "in": "path",
+              "description": "The user id of the user for whom you want to retrieve BIO.",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation"
+            },
+            "404": {
+              "description": "User not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Move": {
+        "type": "object",
+        "properties": {
+          "row": {
+            "type": "integer"
+          },
+          "col": {
+            "type": "integer"
+          }
+        }
+      },
+      "Player": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

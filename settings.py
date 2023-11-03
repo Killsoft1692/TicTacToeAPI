@@ -1,0 +1,18 @@
+from peewee import SqliteDatabase
+
+# GAME RELATED
+AVAILABLE_PLAYERS = ["X", "O"]
+EMPTY_SPACE_HOLDER = '*'
+BATTLEFIELD_WITH = 3
+BATTLEFIELD_HEIGHT = BATTLEFIELD_WITH
+
+# API RELATED
+HOST = '0.0.0.0'
+PORT = 8080
+DEBUG = True
+
+# STORAGE
+DB = SqliteDatabase("tictactoe.db")
+
+# STATISTICS
+LEADERBOARD_LIMIT = 5
